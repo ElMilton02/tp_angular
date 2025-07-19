@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" [routerLink]="['/']">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" [routerLink]="['/about']">about</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>
@@ -25,10 +25,7 @@
 <h1>titulo en el app-component</h1>
 <div>
   <div class="container">
-    <div class="row">
-      <div class="col-8"> <app-beer-list> </app-beer-list> </div>
-      <div class="col-4"> Carrito de compras </div>
-    </div>
+   <router-outlet></router-outlet>
   </div>
 </div>
 <footer>{{title}} 2K25</footer>

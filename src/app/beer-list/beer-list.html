@@ -1,4 +1,4 @@
-<h1>lista de cervzas</h1>
+<h1>lista de cervezas</h1>
 <table>
     <thead>
         <tr>
@@ -6,14 +6,21 @@
             <th>Tipo</th>
             <th>Precio</th>
             <th>Stock</th>
+            <th>compras</th>
         </tr>
     </thead>
     <tbody>
-        <tr ngFor="let beer of beers" [ngClass]= "{'clearance': beer.clearance }">
-            <td>{{beers.name}}</td>
-            <td>{{beers.type}}</td>
-            <td>{{beers.price}}</td>
-            <td><span class="badge text-bg-danger" ngIf="beer.stock === 0">SIN STOCK</span></td>
+        <tr *ngFor="let beer of beers" [ngClass]="{'clearance': beer.clearance}">
+            <td><img width="100"  class="img-thumbnail" [src]="beer.image" [alt]="beer.name"></td>
+            <td>{{beer.name}}</td>
+            <td>{{beer.type}}</td>
+            <td>{{beer.price | currency}}</td>
+            <td><span class="badge text-bg-danger" *ngIf="beer.stock == 0">SIN STOCK</span></td>
+            <td>
+                <button class="btn btn-primary btn-sm" (click)="downQuantity(beer)" >-</button>
+                <input type="text" [(ngModel)]="beer.quantity" (keyup)="onChangeQuantity($event, beer)">
+                <button class="btn btn-primary btn-sm" (click)="upQuantity(beer)" >+</button>
+            </td>
         </tr>
        
     </tbody>
