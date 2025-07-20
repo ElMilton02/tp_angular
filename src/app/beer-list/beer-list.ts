@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Beer } from './Beer'; 
 import { FormsModule } from '@angular/forms';
+import { CartService } from '../cart.service';
+import { InputIntegerComponent } from '../input-integer/input-integer';
 
 @Component({
   standalone: true, 
   selector: 'app-beer-list',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, InputIntegerComponent],
   templateUrl: './beer-list.html',
   styleUrls: ['./beer-list.scss'] 
 })
@@ -45,27 +47,15 @@ export class BeerListComponent implements OnInit {
   ];
 
 
-  constructor() { }
+  constructor(private cartService: CartService) { }
 
 
   ngOnInit(): void {
 
   }
-
-  upQuantity(beer: Beer): void {
-    if (beer.quantity < beer.stock) {
-      beer.quantity++;
-    }
-  }
-
-  onChangeQuantity(event: KeyboardEvent, beer: Beer): void {
-    console.log(event.target);
-  }
-
-  downQuantity(beer: Beer): void {
-    if (beer.quantity > 0) {
-      beer.quantity--;
-    }
+  updateBeerQuantity(beer: Beer, newQuantity: number): void {
+    beer.quantity = newQuantity;
+    this.cartService.updateCart(beer); 
   }
 
 }
