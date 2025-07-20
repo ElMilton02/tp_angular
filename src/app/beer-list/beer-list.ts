@@ -24,7 +24,7 @@ export class BeerListComponent implements OnInit {
       "stock" :42,
       "image": 'assets/img/cerveza.jpg',  
       clearance: false,  
-      quantity: 0,
+      quantity: 0
     },
     {
       "name" :"cristal",
@@ -33,7 +33,7 @@ export class BeerListComponent implements OnInit {
       "stock" :0,
       "image": 'assets/img/cerveza.jpg', 
       clearance: true,
-      quantity: 0,
+      quantity: 0
     },
     {
       "name" :"quilmes",
@@ -42,7 +42,7 @@ export class BeerListComponent implements OnInit {
       "stock" :10,
       "image": 'assets/img/cerveza.jpg', 
       clearance: false,  
-      quantity: 0, 
+      quantity: 0 
     },
   ];
 
@@ -57,5 +57,12 @@ export class BeerListComponent implements OnInit {
     beer.quantity = newQuantity;
     this.cartService.updateCart(beer); 
   }
+
+  addToCart(beer: Beer): void {
+    this.cartService.addToCart(beer);
+  }
+
+
+
 
 }
